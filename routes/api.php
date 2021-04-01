@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', function () {
-    return 'products';
-});
+Route::resource('products', ProductsController::class);
+Route::get('products/search/{name}', [ProductsController::class, 'search']);
+// Route::get('/products', [ProductsController::class, 'index']);
+// Route::post('/products', [ProductsController::class, 'store']);
+// Route::get('/products/{id}/show', [ProductsController::class, 'show']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
